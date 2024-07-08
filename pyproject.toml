@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "message-broker"
+version = "0.1.0"
+description = ""
+authors = ["LongLe <LongSyHoang.Le@worldquant.com>"]
+readme = "README.md"
+packages = [
+    { include = "message_broker" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+core = {git = "git@github.com:tex-corver/core.git"}
+icecream = "^2.1.3"
+redis = "^5.0.1"
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

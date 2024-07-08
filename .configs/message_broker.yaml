@@ -1,0 +1,18 @@
+message_broker:
+  framework: redis
+  connection:
+    host: 192.168.1.100
+    port: 6379
+    ssl: false
+    username:
+    password: $(kubectl get secret message-broker -o jsonpath="{.data.password}" | base64 --decode)
+    ssl_ca_cert:
+    db:
+
+  args:
+    decode_responses: true
+    encoding: utf-8
+  consumer:
+    default_group: default
+    streams:
+      created_job_event:
