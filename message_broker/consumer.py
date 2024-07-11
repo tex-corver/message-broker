@@ -1,7 +1,9 @@
 import logging
+
+import core
+
 from message_broker import configurations, mixin
 from message_broker.types import Broker
-import core
 
 logger = logging.getLogger(__file__)
 
@@ -33,13 +35,26 @@ class Consumer(mixin.Mixin):
         count: int = 1,
         **kwargs,
     ):
+        streams = streams or self.streams
+        group = group or self.default_group
         return self.broker.group_consume(
-            streams=self.streams, group=self.default_group, count=count, **kwargs
+            streams=streams,
+            group=group,
+            count=count,
+            **kwargs,
         )
 
     def consume_event_from_stream(
-        self, stream: str, *args, **kwargs
+        self,
+        stream: str,
+        *args,
+        **kwargs,
     ) -> core.Event | None:
         group = self.streams[stream]
-        event = self.broker.group_consume(stream, group, *args, **kwargs)
+        event = self.broker.group_consume(
+            stream,
+            group,
+            *args,
+            **kwargs,
+        )
         return event

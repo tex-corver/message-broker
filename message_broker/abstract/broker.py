@@ -49,4 +49,3 @@ class Broker(abc.ABC):
         snake_case = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", event_cls_name)
         stream = re.sub("([a-z0-9])([A-Z])", r"\1_\2", snake_case).lower()
         return stream
-        return stream
