@@ -1,14 +1,16 @@
 from __future__ import annotations
+
 import json
 import os
 from typing import Any, Optional
-import core
 
-from core.messages import Event
+import core
 import pydantic
 import redis
-from message_broker import abstract
-from message_broker import configurations
+from core.messages import Event
+from icecream import ic
+
+from message_broker import abstract, configurations
 from message_broker import messages as queue_messages
 
 
@@ -43,11 +45,11 @@ class GroupConsumeResponse:
 
 
 class Broker(abstract.Broker):
-
+    config: configurations.BrokerConfig
     client: redis.Redis
 
     def __init__(self, config: dict[str, Any] = None) -> None:
-        super().__init__(config)
+        super().__init__(config=config)
         self.default_group = self.config.consumer.default_group or "unknown"
         self.streams = self.__init_consumer_streams()
         self.client = self.create_client()

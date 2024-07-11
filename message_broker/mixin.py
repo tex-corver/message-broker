@@ -1,9 +1,9 @@
 from typing import Any
-from message_broker import abstract
-from message_broker import configurations
-from message_broker import adapters
-from message_broker.types import Broker
-from message_broker.types import ComponentFactory
+
+import utils
+
+from message_broker import abstract, adapters, configurations
+from message_broker.types import Broker, ComponentFactory
 
 
 class Mixin:
@@ -11,7 +11,10 @@ class Mixin:
     broker: Broker
 
     def __init__(self, config: dict[str, Any] | configurations.BrokerConfig = None):
-        config = config or utils.get_config().get("message_broker", {})
+        config = config or utils.get_config().get(
+            "message_broker",
+            {},
+        )
         config = (
             configurations.BrokerConfig(**config)
             if isinstance(config, dict)

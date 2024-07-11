@@ -2,14 +2,17 @@ import abc
 import re
 from typing import Any
 
-import utils
-from message_broker import configurations
 import core
+import utils
+from icecream import ic
+
+from message_broker import configurations
 
 __all__ = ["Broker"]
 
 
 class Broker(abc.ABC):
+    config: configurations.BrokerConfig
 
     def __init__(
         self,
@@ -17,8 +20,7 @@ class Broker(abc.ABC):
         *args,
         **kwargs,
     ) -> None:
-        if config is None:
-            config = utils.get_config()["message_broker"]
+        config = config or utils.get_config()["message_broker"]
         if isinstance(config, dict):
             config = configurations.BrokerConfig(**config)
         self.config = config
@@ -46,4 +48,5 @@ class Broker(abc.ABC):
         event_cls_name = event_cls.__name__
         snake_case = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", event_cls_name)
         stream = re.sub("([a-z0-9])([A-Z])", r"\1_\2", snake_case).lower()
+        return stream
         return stream
