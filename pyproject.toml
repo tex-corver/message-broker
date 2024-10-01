@@ -8,10 +8,10 @@ packages = [{ include = "message_broker" }]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-core = { git = "git@github.com:tex-corver/core.git" }
+tex-corver-core = { git = "git@github.com:tex-corver/core.git" }
 icecream = "^2.1.3"
 redis = "^5.0.1"
-utils = { git = "git@github.com:tex-corver/utils.git" }
+tex-corver-utils = { git = "git@github.com:tex-corver/utils.git" }
 
 
 [build-system]
