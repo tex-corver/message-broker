@@ -1,7 +1,7 @@
 message_broker:
   framework: redis
   connection:
-    host: localhost
+    host: 192.168.0.100
     port: 6379
     ssl: false
     username:

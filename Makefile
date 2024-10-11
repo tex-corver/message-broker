@@ -1,5 +1,7 @@
 config_path = $(project_dir)/.configs
 project_dir = $(shell pwd)
+service = $(shell basename $(project_dir))
+
 
 .PHONY: unit-test
 unit-test:

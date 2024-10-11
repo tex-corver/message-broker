@@ -1,17 +1,18 @@
 [tool.poetry]
-name = "message-broker"
+name = "tex-corver-message-broker"
 version = "0.1.0"
 description = ""
-authors = ["LongLe <LongSyHoang.Le@worldquant.com>"]
+authors = ["LongLe <hjjddbz@gmail.com>"]
 readme = "README.md"
-packages = [{ include = "message_broker" }]
+packages = [{ include = "message_broker", from = "src" }]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-core = { git = "git@github.com:tex-corver/core.git" }
 icecream = "^2.1.3"
 redis = "^5.0.1"
-utils = { git = "git@github.com:tex-corver/utils.git" }
+
+tex-corver-core = { git = "git@github.com:tex-corver/core.git" }
+tex-corver-utils = { git = "git@github.com:tex-corver/utils.git" }
 
 
 [build-system]
