@@ -144,9 +144,6 @@ class Broker(abstract.Broker):
         response = self.client.xadd(name=stream, fields=message, **kwargs)
         return response
 
-    def create_message_from_event(self, event: core.Event) -> dict[str, str]:
-        body = event.model_dump_json()
-        return {"body": body}
 
     def create_client(self, *args, **kwargs) -> redis.Redis:
         redis_config: dict[str, Any] = (

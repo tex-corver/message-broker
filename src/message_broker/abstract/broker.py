@@ -41,6 +41,10 @@ class Broker(abc.ABC):
     def create_client(self, *args, **kwargs) -> str:
         raise NotImplementedError
 
+    def create_message_from_event(self, event: core.Event) -> dict[str, str]:
+        body = event.model_dump_json()
+        return {"body": body}
+
     def get_event_stream(self, event: core.Event) -> str:
         return self.get_event_stream_from_cls(event.__class__)
 
