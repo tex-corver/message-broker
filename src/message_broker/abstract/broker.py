@@ -6,7 +6,7 @@ import core
 import utils
 from icecream import ic
 
-from message_broker import configurations
+from message_broker import configurations, messages
 
 __all__ = ["Broker"]
 
@@ -35,7 +35,7 @@ class Broker(abc.ABC):
         count: int = 1,
         *args,
         **kwargs,
-    ) -> core.Event:
+    ) -> list[messages.Message]:
         raise NotImplementedError
 
     def create_client(self, *args, **kwargs) -> str:
@@ -48,5 +48,4 @@ class Broker(abc.ABC):
         event_cls_name = event_cls.__name__
         snake_case = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", event_cls_name)
         stream = re.sub("([a-z0-9])([A-Z])", r"\1_\2", snake_case).lower()
-        return stream
         return stream
